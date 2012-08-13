@@ -4,7 +4,7 @@ namespace :heroku do
     puts "Reading #{file_name}..."
 
     if File.exists?(file_name)
-      env_config = YAML.load_file(file_name)
+      env_config = YAML.load_file(file_name)['production']
       File.open('.env', 'w') { |f| f.write("yaml_config=#{ActiveSupport::JSON.encode(env_config)}") }
 
       puts 'Removing old YAML configuration from heroku...'
